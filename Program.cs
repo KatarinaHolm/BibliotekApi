@@ -63,7 +63,7 @@ namespace BibliotekApi
 
             app.MapPut("/books{id}", async (LibraryDbContext context, int id, Book updatedBook) =>
             {
-                var book = context.Books.FirstOrDefault(b => b.Id == id);
+                var book = await context.Books.FirstOrDefaultAsync(b => b.Id == id);
 
                 book.Title = updatedBook.Title;
                 book.Author = updatedBook.Author;
@@ -76,7 +76,7 @@ namespace BibliotekApi
 
             app.MapDelete("/books/{id}", async (LibraryDbContext context, int id) =>
             {
-                var book = context.Books.FirstOrDefault(b => b.Id == id);
+                var book = await context.Books.FirstOrDefaultAsync(b => b.Id == id);
 
                 context.Books.Remove(book);
 
@@ -109,7 +109,7 @@ namespace BibliotekApi
 
             app.MapPut("/users{id}", async (LibraryDbContext context, int id, User updatedUser) =>
             {
-                var user = context.Users.FirstOrDefault(u => u.Id == id);
+                var user = await context.Users.FirstOrDefaultAsync(u => u.Id == id);
 
                 user.Name = updatedUser.Name;
                 user.Email = updatedUser.Email;
